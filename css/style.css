@@ -1,0 +1,920 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* font-family: 'Dancing Script', cursive;
+font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Handel Gothic' */
+
+/* -----------layout----------------  */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.en {
+    font-family: 'Handel Gothic', sans-serif;
+}
+
+.en_s {
+    font-family: 'Dancing Script', cursive;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/* header */
+.menuOpen {}
+
+.menuOpen button.open {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 30px 22px;
+    z-index: 100;
+}
+
+.menuOpen button.open::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    z-index: -1;
+    top: 0;
+    right: -100px;
+    transform: 0.5s;
+}
+
+.menuOpen button.open:hover:before {
+    right: 0;
+    cursor: pointer;
+}
+
+.menuOpen .menuWrap {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    background: #eee;
+}
+
+.menuOpen .menuWrap .tit {
+    color: #ccc;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25%;
+    font-size: 60px;
+}
+
+.menuOpen .menuWrap .tit li {}
+
+.menuOpen .menuWrap .tit li a {
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.menuOpen .menuWrap .tit li a:hover {
+    transform: translateX(30px);
+    color: #333;
+}
+
+.menuOpen .menuWrap .tit li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background: #333;
+    transition: 0.3s;
+}
+
+.menuOpen .menuWrap .tit li a:hover:after {
+    width: 100%;
+}
+
+.menuOpen .menuWrap .tit li a span {}
+
+.menuOpen .menuWrap .tit li a span b {}
+
+
+
+/* close btn */
+.menuOpen .menuWrap .close:nth-child(1) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+}
+
+.menuOpen .menuWrap .close:nth-child(2) {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    font-size: 25px;
+    border-bottom: 1px solid #888;
+    color: #888;
+}
+
+
+
+/* menuOpen 열기 */
+.menuOpen .menuWrap {
+    transform: skewY(40deg);
+    opacity: 0;
+    width: 0;
+}
+
+.menuOpen .menuWrap.on {
+    transform: skewY(0deg);
+    opacity: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+
+
+/* menuOpen ul li */
+.menuOpen .menuWrap ul {
+    display: none;
+    /* 에니메이션 효과 없애기 위해서 */
+}
+
+.menuOpen .menuWrap.on ul {
+    display: block;
+}
+
+
+
+/* menuOpen 원그리기 */
+.menuOpen .menuWrap.on::before {
+    /* on이라는 class가 붙었을때 원 나오게 하기 위함 */
+    content: '';
+    width: 700px;
+    height: 700px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30%;
+    border-radius: 50%;
+    animation: circle 1.8s;
+}
+
+
+@keyframes circle {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+
+    /* 100%는 이미 존재하기 때문에 굳이 안 적어도 된다 원래 상태로 컴퓨터가 자동으로 계산 */
+}
+
+
+
+
+
+
+/* header */
+header .innerheader {
+    max-width: 1720px;
+    /* 아무리 페이지가 확장이 되어도 넓이가 1720가 되지 않는다 */
+    margin: auto;
+    height: 110px;
+    line-height: 110px;
+    /* 모든 자식에게 영향을 주고 있다 */
+}
+
+.innerheader .logo {
+    float: left;
+}
+
+.innerheader .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.innerheader .mainmenu {
+    float: right;
+    position: relative;
+}
+
+.innerheader .mainmenu .bar {
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    width: 0;
+    height: 3px;
+    background: #e7e7e7;
+    transition: 0.4s;
+}
+
+.innerheader .mainmenu .gnb {
+    float: left;
+    /* 엄마인 mainmenu 왼쪽에 붙겠다라는 뜻 */
+}
+
+.innerheader .mainmenu .gnb li {
+    float: left;
+    margin: 0 20px;
+}
+
+.innerheader .mainmenu .gnb li a {
+    display: block;
+    color: #555;
+}
+
+.innerheader .mainmenu .sns {
+    float: left;
+    /* 형인 gnb의 왼쪽에 붙겠다라는 뜻 */
+    margin-left: 300px;
+}
+
+.innerheader .mainmenu .sns li {
+    float: left;
+    margin: 0 20px;
+}
+
+.innerheader .mainmenu .sns li a {
+    display: block;
+    padding: 0 10px;
+}
+
+.innerheader .mainmenu .sns li a img {}
+
+
+/* -----------visual----------------  */
+/* float으로 인해 부모의 깨짐현상 방지
+1.:after공간을 이용하여 clear:both를 적용
+2.부모요소에 overflow:hidden;
+3.부모에 height값을 줄때  */
+
+section.visual {
+    max-width: 1720px;
+    margin: auto;
+
+}
+
+section.visual .mainImg {
+    float: left;
+    width: 50%;
+}
+
+section.visual .mainImg img {
+    width: 90%;
+}
+
+section.visual .mainTxt {
+    margin-top: 180px;
+    float: left;
+    width: 50%;
+}
+
+section.visual .mainTxt .tit {
+    font-size: 72px;
+}
+
+section.visual .mainTxt .tit span.gray {
+    color: #ccc;
+}
+
+section.visual .mainTxt .txt {
+    padding: 50px 0 0 70px;
+}
+
+/* inner-넓이에 대한 가이드 설정에 대한 내용 */
+section .inner {
+    width: 1320px;
+    margin: auto;
+    overflow: hidden;
+}
+
+section .inner .box {
+    float: left;
+    width: 50%;
+}
+
+
+/* -----------journal----------------  */
+section.journal {
+    position: relative;
+    padding: 190px 0 120px;
+}
+
+section.journal .scroll {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -20px;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    padding-top: 90px;
+}
+
+section.journal .scroll::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6px;
+    background: #333;
+    height: 75px;
+    width: 1px;
+}
+
+section.journal .box .img {
+    padding-top: 100px;
+}
+
+section.journal .box .tit {
+    margin-bottom: 40px;
+}
+
+section.journal .box ul {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 40px;
+}
+
+section.journal .box ul li {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+section.journal .box ul li h3 {
+    float: left;
+    width: 22%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+section.journal .box ul li p {
+    float: left;
+    width: 78%;
+    color: #888;
+}
+
+section.journal .box .moreBtn {
+    margin-left: 22%;
+}
+
+
+
+/* -----------service----------------  */
+section.service {
+    padding: 190px 0;
+}
+
+section.service .box .img {
+    margin-top: 60px;
+}
+
+section.service .box.design {
+    margin-top: -40%;
+    width: 45%;
+    border-top: 1px solid #c4e5ea;
+    padding-top: 60px;
+}
+
+section.service .box.design .tit {
+    font-size: 30px;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+/* service영역 배경색 변경 */
+body {
+    transition: 0.4s;
+}
+
+body.on {
+    background: #e8fcff;
+}
+
+section.service .img.animate__motion::after {
+    background: #e8fcff;
+}
+
+
+
+
+/* -----------customer----------------  */
+section.customer {
+    background: url(../img/img_04.jpg) no-repeat center;
+    background-size: cover;
+    text-align: center;
+    /* 글자의 공간(높이)만 가진다 여기까지 코딩은*/
+    padding: 160px;
+    /* 이미지의 공간을 더 만들어준다 */
+}
+
+section.customer .tit {
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+section.customer .txt {
+    color: #777;
+}
+
+
+/* -----------team----------------  */
+section.team {
+    position: relative;
+    padding: 190px 0;
+}
+
+section.team .box.left {
+    text-align: right;
+    padding-right: 80px;
+    box-sizing: border-box;
+}
+
+section.team .box .tit {
+    clear: both;
+    margin-top: 40px;
+}
+
+section.team .box .txt {
+    margin: 30px 0;
+}
+
+section.team .box .img {
+    margin-top: 100px;
+}
+
+
+
+/* -----------footer----------------  */
+footer {
+    width: 1320px;
+    margin: auto;
+}
+
+footer .top {}
+
+footer .top .tit {
+    color: #e6e6e6;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+footer .bottom {
+    border-top: 1px solid #e6e6e6;
+    padding: 40px 0 100px;
+}
+
+footer .buttom ul {
+    overflow: hidden;
+}
+
+footer .buttom ul li {
+    float: left;
+    width: 23%;
+    color: #aaa;
+    font-size: 12px;
+    line-height: 2;
+}
+
+footer .buttom ul li:nth-child(1) {
+    width: 31%;
+    font-size: 28px;
+    color: #000;
+    line-height: 1.1;
+}
+
+footer .buttom ul li b {
+    color: #333;
+    font-weight: normal;
+}
+
+
+
+
+
+
+/* -----------타이틀, 텍스트----------------  */
+.tit {
+    font-size: 50px;
+    line-height: 1.1;
+    font-weight: normal;
+}
+
+.tit span {
+    display: block;
+}
+
+.tit span b {
+    display: block;
+    font-weight: normal;
+
+}
+
+.tit .en_s {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.txt p {
+    color: #888;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.txt p b {
+    font-weight: normal;
+}
+
+.moreBtn {
+    display: inline-block;
+    color: #333;
+    margin-top: 20px;
+    padding-left: 45px;
+    transform: skewX(-15deg) translate(5px);
+    transition: 0.2s;
+    position: relative;
+}
+
+.moreBtn::before {
+    content: '';
+    height: 3px;
+    width: 35px;
+    background: #333;
+    position: absolute;
+    left: 0px;
+    top: 40%;
+}
+
+.moreBtn:hover {
+    transform: skewX(0deg) translate(0px);
+    font-weight: bold;
+}
+
+
+/* -----------이미지애니----------------  */
+.img.animate__motion {
+    /* 이미지가 스크롤 했을때 내려갔다가 올라옴 */
+    animation: imgAni 1s;
+    position: relative;
+}
+
+@keyframes imgAni {
+    0% {
+        transform: translateY(50px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.img.animate__motion::after {
+    /* 이미지를 덮는 이미지를 추가 */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fff;
+    width: 100%;
+    height: 0;
+    animation: mask 1.2s;
+}
+
+@keyframes mask {
+    0% {
+        height: 90%;
+    }
+
+    100% {
+        height: 0%;
+    }
+}
+
+section.team .img.animate__motion::after {
+    display: none;
+}
+
+
+
+/* -----------텍스트애니----------------  */
+.tit.animate__motion span {
+    display: block;
+    overflow: hidden;
+}
+
+.tit.animate__motion span b {
+    display: block;
+    /* 부모의 넓이를 다 가진다는 개념 */
+    animation: txtAni 1.3s;
+}
+
+.txt.animate__motion p {
+    display: block;
+    overflow: hidden;
+}
+
+.txt.animate__motion p b {
+    display: block;
+    /* 부모의 넓이를 다 가진다는 개념 */
+    animation: txtAni 2s;
+}
+
+@keyframes txtAni {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+        transform: translate(0, 40px) skewY(8deg);
+        /* block이 되어야 translate먹힘 */
+        transform-origin: top left;
+    }
+}
+
+/* -----------svg----------------  */
+.circleBox {}
+
+.circleBox .svgAni {}
+
+.circleBox .svgAni path {
+    stroke-dasharray: 2102px;
+    stroke-dashoffset: 0;
+    /* 선의 gap부분을 없앰 */
+}
+
+.circleBox.animate__motion .svgAni path {
+    animation: dash 1.5s;
+}
+
+section.journal .circleBox {
+    width: 700px;
+    position: absolute;
+    right: 13%;
+    top: 100px;
+    z-index: -1;
+}
+
+section.team .circleBox {
+    width: 700px;
+    position: absolute;
+    left: 20%;
+    top: -50px;
+    z-index: -1;
+}
+
+
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 2102px;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+/* ----------반응형----------- */
+
+
+/* ----------pc----------- */
+/* ----------1720~1401----------- */
+@media (max-width:1720px){
+    .innerheader {
+        max-width: 100%;
+        padding: 0 30px;
+        box-sizing: border-box;}
+    .innerheader .mainmenu .sns{margin-left: 200px;}
+    section.visual .mainTxt{margin-top: 150px;}
+    section.visual .mainTxt .tit {font-size: 62px;}
+}
+/* ----------태블릿----------- */
+/* ----------1024~1400----------- */
+@media (max-width:1400px){
+
+    .innerheader .mainmenu .sns li{margin: 0 5px;}
+    section.visual .mainTxt{margin-top: 100px;}
+    section.visual .mainTxt .tit {
+        font-size: 46px;}
+    section.visual .mainTxt .txt {
+        padding: 20px 0 0 0px;}
+    section .inner {
+        width: 100%;
+        padding: 0 30px;
+        box-sizing: border-box;}
+    .img img{width: 100%;}
+    section.jurnal{overflow: hidden;}
+    section.jurnal .scroll{display: none;}
+    section.jurnal .circleBox{
+        right: -10%;
+        top: 0px;}
+    section.jurnal .box .img{width: 90%;}
+    section.customer{padding: 160px 0;}
+    footer {
+        width: 100%;
+        padding: 0 30px; 
+        box-sizing: border-box;}
+}
+/* ----------태블릿----------- */
+/* ----------1024~768----------- */
+@media (max-width:1024px){
+    .innerheader{height: 80px; line-height: 80px;}
+    .innerheader .mainmenu{display: none;}
+
+    .menuOpen button.open:before{display: none;}
+    .menuOpen button.open {
+        position: absolute;
+        top:0;
+        transform: none;
+        background: none;
+        border: none;
+        padding: 0;
+        width: 70px;
+        height: 80px;
+    }
+    section.visual .mainImg{
+        float: none;
+        width: 100%;
+    }
+    section.visual .mainImg img{
+        width: 100%;}
+    section.visual .mainTxt{
+        float: none;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    section .inner .box{
+        float: none;
+        width: 100%; }
+    section.jurnal{
+        padding: 80px 0;
+    }
+    section.jurnal .circleBox{
+        top: 200px;
+    }
+    section.jurnal .box .img{
+        padding-top: 0;
+        width: 80%;
+        margin: 0 auto 50px;
+    }
+
+    section.service {
+        padding: 80px 0;
+    }
+    section.service .txt{
+        margin-top: 20px;
+    }
+    section.service .box .img{
+        width: 70%;
+        margin: 50px auto 0;
+    }
+    section.service .box.design {
+        margin-top: 50px;
+        width: 100%;}
+    section.service .box.design .img{
+        width: 70%;
+        margin: 50px 0 0;
+    }
+    section.service .box.design .tit {
+        font-size: 35px;}
+    section.customer {padding: 120px 0;}  
+    section.customer .tit{font-size: 30px;} 
+    section.team {padding: 80px 0; overflow: hidden;}
+    section.team .circleBox{left: 15%;}
+    section.team .box.left{padding-right: 0;}
+    section.team .box .img {
+        margin-top: 50px;
+        width: 70%;
+        float: right;
+    }
+    section.team .box:nth-child(2){
+        clear:both;
+    }
+    section.team .box:nth-child(2) .img{
+        width: 100%; margin: 50px 0;}
+    section.team .box .tit{
+        clear:both;/* //여기 */
+        margin-top: 0;}
+    section.team .box.left .moreBtn{
+        float: right;
+    margin-right: 5px;
+    }
+    section.team .box.left .img{
+       margin-top: 70px;
+    }
+
+    footer .bottom ul li:first-child {
+        width: 100%; margin-bottom: 30px;}
+    footer .bottom ul li{width: 33.3333%;}
+}
+/* ----------모바일해상도----------- */
+/* ----------1024~768----------- */
+@media (max-width:767px){
+    body{font-size: 13px;}
+    .innerheader{height: 60px; 
+        line-height: 60px;
+        padding: 0 20px;}
+    .menuOpen button.open{
+        width: 52px; height: 60px;
+    }
+    .menuOpen button.open img{height: 38px; }
+    .menuOpen .menuWrap .tit {
+        left: 20px;
+        font-size: 35px;}
+    .menuOpen .menuWrap .close:nth-child(1) {
+        top: 20PX;
+        transform: none;
+        left: 20px;
+    }
+    .menuOpen .menuWrap .close.en{display: none;}
+    .menuOpen .menuWrap.on:before{left: 20%;}
+    section.visual{padding: 0 20px;}
+    .tit{font-size: 30px;}
+    section .inner{padding: 0 20px;}
+    section.jurnal {padding: 50px 0;}
+    section.jurnal .circleBox{
+        top: 10%; right: -4%;}
+    section.jurnal .box .img{
+        width: 100%;
+        margin-bottom: 30px;}
+    section.jurnal .box .tit{
+        margin-bottom: 20px;}
+    section.jurnal .box ul li{
+        margin-bottom: 20px;}
+    section.jurnal .box ul li h3 {
+        width: 100%;
+        margin-bottom: 10px;}
+    section.jurnal .box ul li p{
+        width: 100%;
+        font-size: 12px;
+    }
+    section.jurnal .box .moreBtn {
+        margin-left: 0;}
+    section.service {padding: 50px 0;}
+    section.service .box .img {
+        width: 100%; margin-top: 30px;}
+    section.service .box.design{
+        padding-top: 50px;
+    }
+    section.service .box.design .tit{
+        font-size: 25px; margin-bottom:10px;}
+    section.service .box.design .img{
+        width: 100%;
+    }
+    section.customer {padding: 80px 20px;}
+    section.customer .tit {font-size: 25px;}
+    section.team {padding: 50px 0;}
+    section.team .circleBox {left: 4%;}
+    section.team .box .txt {margin: 30px 0 10px;}
+    section.team .box.left .img {margin-top: 50px;}
+    section.team .box:nth-child(2) .img{margin-top: 30px;}
+    footer{padding :0 20px}
+    footer .top .tit{padding-bottom: 30px;}
+    footer .bottom ul li:first-child{
+        font-size: 20px;}
+    footer .bottom ul li {
+        width: 100%; margin-bottom: 12px;}
+    
+}
+/* ----------320~766 모바일----------- */
+@media (max-width:320px){
+    .tit .en_s{font-size: 16px;}
+
+    section.visual .mainTxt .tit,  
+    footer .top .tit, 
+    .menuOpen .menuWrap .tit{
+        font-size: 27px;
+    }
+    section.jurnal .box ul li h3{
+        font-size: 14px;
+    }
+    section.service .box.design .tit{
+        font-size: 22px;
+    }
+    .moreBtn{
+        font-size: 11px;
+    }
+}
